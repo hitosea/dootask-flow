@@ -364,7 +364,15 @@ func MoveStage(nodeInfos []*flow.NodeInfo, userID, username, company, comment, c
 	} else {
 		startUserID = userID
 	}
-	if nodeInfos[step].AproverId == startUserID {
+	//  判断下一流程： 如果审批人已经审核，自动通过
+	var stepIsAlreadyReviewed bool
+	for i := 0; i < step; i++ {
+		if nodeInfos[i].AproverId == userID && nodeInfos[step].AproverId == userID && nodeInfos[i].AproverType == "approver" {
+			stepIsAlreadyReviewed = true
+		}
+	}
+	//
+	if nodeInfos[step].AproverId == startUserID || stepIsAlreadyReviewed {
 		// 生成新的任务
 		var task = model.Task{
 			NodeID:     nodeInfos[step].NodeID,
@@ -383,7 +391,11 @@ func MoveStage(nodeInfos []*flow.NodeInfo, userID, username, company, comment, c
 			return err
 		}
 		//
-		return MoveStage(nodeInfos, userID, username, company, "自动通过,审批人与发起人为同一人", candidate, task.ID, procInstID, step, pass, tx)
+		reason := "自动通过,审批人与发起人为同一人"
+		if stepIsAlreadyReviewed {
+			reason = "自动通过,审批人已审核"
+		}
+		return MoveStage(nodeInfos, userID, username, company, reason, candidate, task.ID, procInstID, step, pass, tx)
 	}
 
 	// 通过
