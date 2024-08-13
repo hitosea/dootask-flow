@@ -366,9 +366,15 @@ func MoveStage(nodeInfos []*flow.NodeInfo, userID, username, company, comment, c
 	}
 	//  判断下一流程： 如果审批人已经审核，自动通过
 	var stepIsAlreadyReviewed bool
-	for i := 0; i < step; i++ {
-		if nodeInfos[i].AproverId == userID && nodeInfos[step].AproverId == userID && nodeInfos[i].AproverType == "approver" {
+	if pass {
+		if nodeInfos[step].AproverId == userID {
 			stepIsAlreadyReviewed = true
+		} else {
+			for i := 0; i < step; i++ {
+				if nodeInfos[i].AproverId == nodeInfos[step].AproverId && nodeInfos[i].AproverType == "approver" {
+					stepIsAlreadyReviewed = true
+				}
+			}
 		}
 	}
 	//
