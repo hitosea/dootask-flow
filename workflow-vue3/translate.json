@@ -1,6 +1,6 @@
 {
     "translateModel": 3,
-    "strict": true,
+    "strict": false,
     "filePath": "./",
     "targetPath": "",
     "languageList": [
@@ -13,7 +13,8 @@
         "FR",
         "ID"
     ],
-    "channel": "google",
+    "channel": "hitosea",
+    "channelUrl": "http://103.63.139.229:8088/api/translate?type=dootask",
     "appKey": "",
     "secretKey": "",
     "excludes": [
