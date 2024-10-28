@@ -39,6 +39,7 @@ func AddNotifierTx(taskID int, group, company string, step, procInstID int, tx *
 		ProcInstID: procInstID,
 		Company:    company,
 		State:      1,
+		IsSystem:   1,
 		TaskID:     taskID,
 		UserID:     strings.Join(ids, ","),
 		UserName:   strings.Join(names, ","),
@@ -78,36 +79,10 @@ func AddCandidateUserTx(userID, company string, step, taskID, procInstID int, tx
 		Company:    company,
 	}
 	return SaveIdentitylinkTx(i, tx)
-	// var wg sync.WaitGroup
-	// var err1, err2 error
-	// numberOfRoutine := 2
-	// wg.Add(numberOfRoutine)
-	// go func() {
-	// 	defer wg.Done()
-	// 	err1 = DelCandidateByProcInstID(procInstID, tx)
-	// }()
-	// go func() {
-	// 	defer wg.Done()
-	// 	i := &model.Identitylink{
-	// 		UserID:     userID,
-	// 		Type:       model.IdentityTypes[model.CANDIDATE],
-	// 		TaskID:     taskID,
-	// 		Step:       step,
-	// 		ProcInstID: procInstID,
-	// 		Company:    company,
-	// 	}
-	// 	err2 = SaveIdentitylinkTx(i, tx)
-	// }()
-	// wg.Wait()
-	// fmt.Println("保存identyilink结束")
-	// if err1 != nil {
-	// 	return err1
-	// }
-	// return err2
 }
 
 // AddParticipantTx 添加任务参与人
-func AddParticipantTx(userID, username, company, comment string, pass bool, taskID, procInstID, step int, tx *gorm.DB, states ...int) error {
+func AddParticipantTx(userID, username, company, comment string, pass bool, taskID, procInstID, step int, tx *gorm.DB, isSystem int, states ...int) error {
 	var state int
 	if step == 0 {
 		state = 1
@@ -129,6 +104,7 @@ func AddParticipantTx(userID, username, company, comment string, pass bool, task
 		Company:    company,
 		TaskID:     taskID,
 		Comment:    comment,
+		IsSystem:   isSystem,
 		State:      state,
 	}
 	return SaveIdentitylinkTx(i, tx)

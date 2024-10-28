@@ -344,7 +344,7 @@ func (p *ProcessReceiver) StartProcessInstanceByID(variable *types.Vars) (string
 	//--------------------流转------------------
 	// times = time.Now()
 	// 流程移动到下一环节
-	err = MoveStage(nodeinfos, p.UserID, p.Username, p.Company, "", "", task.ID, procInstID, step, true, tx)
+	err = MoveStage(nodeinfos, p.UserID, p.Username, p.Company, "", "", task.ID, procInstID, step, true, tx, 1)
 	if err != nil {
 		tx.Rollback()
 		return "", err

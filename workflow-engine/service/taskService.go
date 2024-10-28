@@ -179,7 +179,7 @@ func CompleteTaskTx(taskID int, userID, username, company, comment, candidate st
 	// 查看任务的未审批人数是否为0，不为0就不流转
 	if task.UnCompleteNum > 0 && pass == true { // 默认是全部通过
 		// 添加参与人
-		err := AddParticipantTx(userID, username, company, comment, pass, task.ID, task.ProcInstID, task.Step, tx)
+		err := AddParticipantTx(userID, username, company, comment, pass, task.ID, task.ProcInstID, task.Step, tx, 0)
 		if err != nil {
 			return nil, err
 		}
@@ -303,17 +303,17 @@ func MoveStageByProcInstID(userID, username, company, comment, candidate string,
 	if state != nil {
 		t = state[0]
 	}
-	return MoveStage(nodeInfos, userID, username, company, comment, candidate, taskID, procInstID, step, pass, tx, t)
+	return MoveStage(nodeInfos, userID, username, company, comment, candidate, taskID, procInstID, step, pass, tx, 0, t)
 }
 
 // MoveStage 流程流转
-func MoveStage(nodeInfos []*flow.NodeInfo, userID, username, company, comment, candidate string, taskID, procInstID, step int, pass bool, tx *gorm.DB, state ...int) (err error) {
+func MoveStage(nodeInfos []*flow.NodeInfo, userID, username, company, comment, candidate string, taskID, procInstID, step int, pass bool, tx *gorm.DB, isSystem int, state ...int) (err error) {
 	var t int
 	if state != nil {
 		t = state[0]
 	}
 	// 添加上一步的参与人
-	err = AddParticipantTx(userID, username, company, comment, pass, taskID, procInstID, step, tx, t)
+	err = AddParticipantTx(userID, username, company, comment, pass, taskID, procInstID, step, tx, isSystem, t)
 	if err != nil {
 		return err
 	}
@@ -353,7 +353,7 @@ func MoveStage(nodeInfos []*flow.NodeInfo, userID, username, company, comment, c
 		if err != nil {
 			return err
 		}
-		return MoveStage(nodeInfos, userID, username, company, comment, candidate, task.ID, procInstID, step, pass, tx)
+		return MoveStage(nodeInfos, userID, username, company, comment, candidate, task.ID, procInstID, step, pass, tx, isSystem)
 	}
 
 	//  判断下一流程： 如果审批人是自己，自动通过
@@ -401,7 +401,7 @@ func MoveStage(nodeInfos []*flow.NodeInfo, userID, username, company, comment, c
 		if stepIsAlreadyReviewed {
 			reason = "自动通过,审批人已审核"
 		}
-		return MoveStage(nodeInfos, userID, username, company, reason, candidate, task.ID, procInstID, step, pass, tx)
+		return MoveStage(nodeInfos, userID, username, company, reason, candidate, task.ID, procInstID, step, pass, tx, 1)
 	}
 
 	// 通过
