@@ -116,5 +116,6 @@ export default [
    {"JA":"最高責任者","KO":"최고 경영자","EN":"Top-level Executive","DE":"Top-Führungskraft","ID":"Eksekutif Tingkat Atas","FR":"Cadre supérieur","CN":"最高层级主管","TC":"最高層級主管"},
    {"JA":"第2レベルの管理者","KO":"2단계 관리자","EN":"Level 2 Manager","DE":"Manager der Stufe 2","ID":"Manajer Level 2","FR":"Gestionnaire de niveau 2","CN":"第2层级主管","TC":"第2層級主管"},
    {"JA":"第3レベルの管理者","KO":"3단계 관리자","EN":"Level 3 Manager","DE":"Manager der Stufe 3","ID":"Manajer Level 3","FR":"Gestionnaire de niveau 3","CN":"第3层级主管","TC":"第3層級主管"},
-   {"JA":"第4レベルの管理者","KO":"4단계 관리자","EN":"Level 4 Manager","DE":"Manager der Stufe 4","ID":"Manajer Level 4","FR":"Gestionnaire de niveau 4","CN":"第4层级主管","TC":"第4層級主管"}
+   {"JA":"第4レベルの管理者","KO":"4단계 관리자","EN":"Level 4 Manager","DE":"Manager der Stufe 4","ID":"Manajer Level 4","FR":"Gestionnaire de niveau 4","CN":"第4层级主管","TC":"第4層級主管"},
+   {"JA":"産前検診休暇","KO":"출산 전 검진 휴가","EN":"Maternity Checkup Leave","DE":"Mutterschaftsuntersuchung Urlaub","ID":"Cuti Pemeriksaan Kehamilan","FR":"Congé de contrôle prénatal","CN":"产检假","TC":"產檢假"}
 ]
