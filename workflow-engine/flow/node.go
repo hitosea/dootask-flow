@@ -318,6 +318,19 @@ func IfProcessConifgIsValid(node *Node) error {
 		}
 	}
 
+	// 检查审批人是否存在或者离职
+	if node.NodeUserList != nil {
+		for _, user := range node.NodeUserList {
+			userInfo, _ := model.GetAllUserInfoById(user.TargetId)
+			if userInfo.Userid == "" {
+				return errors.New("节点【" + node.Name + "】的审批人【" + user.Name + "】不存在")
+			}
+			if userInfo.DisableAt != "" {
+				return errors.New("节点【" + node.Name + "】的审批人【" + user.Name + "】已离职")
+			}
+		}
+	}
+
 	// 子节点是否存在
 	if node.ChildNode != nil && node.ChildNode.Name != "" {
 		return IfProcessConifgIsValid(node.ChildNode)
@@ -328,12 +341,6 @@ func IfProcessConifgIsValid(node *Node) error {
 // CheckConditionNode 检查条件节点
 func CheckConditionNode(nodes []*Node) error {
 	for _, node := range nodes {
-		// if node.Properties == nil {
-		// return errors.New("节点【" + node.NodeID + "】的Properties对象为空值！！")
-		// }
-		// if len(node.Properties.Conditions) == 0 {
-		// 	return errors.New("节点【" + node.NodeID + "】的Conditions对象为空值！！")
-		// }
 		err := IfProcessConifgIsValid(node)
 		if err != nil {
 			return err

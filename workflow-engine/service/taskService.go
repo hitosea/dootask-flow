@@ -172,7 +172,7 @@ func CompleteTaskTx(taskID int, userID, username, company, comment, candidate st
 		}
 		if yes {
 			tx.Rollback()
-			return nil, errors.New("您已经审批过了，请等待他人审批！）")
+			return nil, errors.New("您已经审批过了，请等待他人审批！")
 		}
 	}
 
@@ -329,10 +329,28 @@ func MoveStage(nodeInfos []*flow.NodeInfo, userID, username, company, comment, c
 		}
 	}
 
-	// 指定下一步执行人
-	// if len(candidate) > 0 {
-	// nodeInfos[step].Aprover = candidate
-	// }
+	// 判断下个流程是否存在审批人
+	if pass {
+		for key, node := range nodeInfos {
+			if key <= step {
+				continue
+			}
+			if node.AproverType == flow.NodeTypes[flow.APPROVER] && node.AproverId != "" {
+				// 检查审批人是否存在或者离职
+				if node.NodeUserList != nil {
+					for _, user := range node.NodeUserList {
+						userInfo, _ := model.GetAllUserInfoById(user.TargetId)
+						if userInfo.Userid == "" {
+							return errors.New("下个流程的审批人【" + user.Name + "】不存在")
+						}
+						if userInfo.DisableAt != "" {
+							return errors.New("下个流程的审批人【" + user.Name + "】已离职")
+						}
+					}
+				}
+			}
+		}
+	}
 
 	// 判断下一流程： 如果是审批人是：抄送人
 	if nodeInfos[step].AproverType == flow.NodeTypes[flow.NOTIFIER] {

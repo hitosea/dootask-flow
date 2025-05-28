@@ -20,6 +20,7 @@ type Users struct {
 	Email      string `json:"email"`
 	Profession string `json:"profession"`
 	Userimg    string `json:"userimg"`
+	DisableAt  string `json:"disable_at"`
 	CreatedAt  string `json:"created_at"`
 	UpdatedAt  string `json:"updated_at"`
 }
@@ -137,5 +138,12 @@ func GetUserDeptById(id string) ([]*Users, error) {
 func GetUserInfoById(id string) (*Users, error) {
 	var datas Users
 	err := db.Model(&Users{}).Where("disable_at is null and userid=?", id).Find(&datas).Error
+	return &datas, err
+}
+
+// GetAllUserInfoById 根据用户id获取用户信息
+func GetAllUserInfoById(id string) (*Users, error) {
+	var datas Users
+	err := db.Model(&Users{}).Where("userid=?", id).Find(&datas).Error
 	return &datas, err
 }
