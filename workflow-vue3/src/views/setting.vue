@@ -1,5 +1,20 @@
 <template>
     <div>
+
+        <!-- <div class="fd-nav">
+            <div class="fd-nav-left">
+                <div class="fd-nav-back" @click="toReturn">
+                    <i class="anticon anticon-left"></i>
+                </div>
+                <div class="fd-nav-title">{{ workFlowDef.name || '' }}</div>
+            </div>
+            <div class="fd-nav-right">
+                <button type="button" class="ant-btn button-publish" @click="saveSet">
+                    <span>发 布</span>
+                </button>
+            </div>
+        </div> -->
+
         <div class="fd-nav-title">{{ $L(workFlowDef.name || '') }}</div>
         <el-button type="success" @click="saveSet" style="position: fixed;right: 40px;z-index: 10;bottom: 30px;">{{ $L('发 布')}}</el-button>
         

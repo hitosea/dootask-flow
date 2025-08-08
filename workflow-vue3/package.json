@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "@sxzz/popperjs-es": "^2.11.7",
-        "element-plus": "^2.2.14",
+        "element-plus": "~2.2.14",
         "vue": "^3.2.37",
         "hi-translate": "^0.0.4",
         "vue-router": "^4.1.3",
