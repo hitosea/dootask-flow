@@ -315,8 +315,8 @@ const closeDrawer = (val) => {
 .condition_copyer {
     .priority_level {
         position: absolute;
-        top: 11px;
-        right: 30px;
+        top: 18px;
+        right: 60px;
         width: 100px;
         height: 32px;
         background: rgba(255, 255, 255, 1);

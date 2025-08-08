@@ -902,7 +902,7 @@ body,
 html {
     font-size: 12px!important;
     color: #191f25!important;
-    background: #f6f6f6!important
+    /* background: #f6f6f6!important */
 }
 
 .wrap {
@@ -931,134 +931,16 @@ html {
     -moz-osx-font-smoothing: grayscale
 }
 
-.fd-nav {
+.fd-nav-title {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 997;
-    width: 100%;
-    height: 60px;
-    font-size: 14px;
-    color: #fff;
-    background: #3296fa;
-    display: flex;
-    align-items: center
-}
-
-.fd-nav>* {
-    flex: 1;
-    width: 100%
-}
-
-.fd-nav .fd-nav-left {
-    display: -webkit-box;
-    display: flex;
-    align-items: center
-}
-
-.fd-nav .fd-nav-center {
-    flex: none;
-    width: 600px;
-    text-align: center
-}
-
-.fd-nav .fd-nav-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    text-align: right
-}
-
-.fd-nav .fd-nav-back {
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-    font-size: 22px;
-    border-right: 1px solid #1583f2;
-    text-align: center;
-    cursor: pointer
-}
-
-.fd-nav .fd-nav-back:hover {
-    background: #5af
-}
-
-.fd-nav .fd-nav-back:active {
-    background: #1583f2
-}
-
-.fd-nav .fd-nav-back .anticon {
-    line-height: 60px
-}
-
-.fd-nav .fd-nav-title {
-    width: 0;
-    flex: 1;
+    left: 30px;
+    z-index: 10;
+    top: 19px;
+    font-size: 20px;
+    max-width: calc(100% - 240px);
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
-    padding: 0 15px
-}
-
-.fd-nav a {
-    color: #fff;
-    margin-left: 12px
-}
-
-.fd-nav .button-publish {
-    min-width: 80px;
-    margin-left: 4px;
-    margin-right: 15px;
-    color: #3296fa;
-    border-color: #fff
-}
-
-.fd-nav .button-publish.ant-btn:focus,
-.fd-nav .button-publish.ant-btn:hover {
-    color: #3296fa;
-    border-color: #fff;
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .3)
-}
-
-.fd-nav .button-publish.ant-btn:active {
-    color: #3296fa;
-    background: #d6eaff;
-    box-shadow: none
-}
-
-.fd-nav .button-preview {
-    min-width: 80px;
-    margin-left: 16px;
-    margin-right: 4px;
-    color: #fff;
-    border-color: #fff;
-    background: transparent
-}
-
-.fd-nav .button-preview.ant-btn:focus,
-.fd-nav .button-preview.ant-btn:hover {
-    color: #fff;
-    border-color: #fff;
-    background: #59acfc
-}
-
-.fd-nav .button-preview.ant-btn:active {
-    color: #fff;
-    border-color: #fff;
-    background: #2186ef
-}
-
-.fd-nav-content {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding-bottom: 30px
+    white-space: nowrap;
 }
 
 .error-modal-desc {
@@ -1116,8 +998,8 @@ html {
     justify-content: space-between;
     height: 40px;
     width: 105px;
-    right: 40px;
-    margin-top: 30px;
+    right: 60px;
+    top: 13px;
     z-index: 10
 }
 
@@ -1336,7 +1218,7 @@ html {
     border-style: solid;
     border-width: 8px 6px 4px;
     border-color: #cacaca transparent transparent;
-    background: #f5f5f7
+    /* background: #f5f5f7 */
 }
 
 .node-wrap-box.start-node:before {
@@ -1352,7 +1234,7 @@ html {
     position: absolute;
     height: 8px;
     width: 50%;
-    background-color: #f5f5f7;
+    /* background-color: #f5f5f7; */
     top: -4px
 }
 
@@ -1369,7 +1251,7 @@ html {
     position: absolute;
     height: 8px;
     width: 50%;
-    background-color: #f5f5f7;
+    /* background-color: #f5f5f7; */
     bottom: -4px
 }
 
@@ -1379,7 +1261,7 @@ html {
 
 .dingflow-design {
     width: 100%;
-    background-color: #f5f5f7;
+    /* background-color: #f5f5f7; */
     overflow: auto;
     position: absolute;
     bottom: 0;
@@ -1393,7 +1275,7 @@ html {
     display: inline-block;
     position: relative;
     width: 100%;
-    padding: 90px 0 0;
+    padding: 90px 0;
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
@@ -1405,7 +1287,7 @@ html {
     min-width: -webkit-min-content;
     min-width: -moz-min-content;
     min-width: min-content;
-    background-color: #f5f5f7;
+    /* background-color: #f5f5f7; */
     transform-origin: 50% 0px 0px;
 }
 
@@ -1460,7 +1342,7 @@ html {
 }
 
 .dingflow-design .branch-box .col-box {
-    background: #f5f5f7
+    /* background: #f5f5f7 */
 }
 
 .dingflow-design .branch-box .col-box:before {
